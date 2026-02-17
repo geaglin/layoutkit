@@ -9,43 +9,68 @@ const colsMap: Record<number, string> = {
   10: "grid-cols-10", 11: "grid-cols-11", 12: "grid-cols-12",
 };
 
-const gapXMap: Record<GapSize, string> = {
-  none: "gap-x-0", xs: "gap-x-1", sm: "gap-x-2", md: "gap-x-4",
-  lg: "gap-x-6", xl: "gap-x-8", "2xl": "gap-x-12", "3xl": "gap-x-16",
+// Derived from gapMap — replace "gap-" prefix with "gap-x-" / "gap-y-"
+const gapXMap: Record<GapSize, string> = Object.fromEntries(
+  Object.entries(gapMap).map(([k, v]) => [k, v.replace("gap-", "gap-x-")])
+) as Record<GapSize, string>;
+
+const gapYMap: Record<GapSize, string> = Object.fromEntries(
+  Object.entries(gapMap).map(([k, v]) => [k, v.replace("gap-", "gap-y-")])
+) as Record<GapSize, string>;
+
+type ResponsiveCols = {
+  base?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+  "2xl"?: number;
 };
 
-const gapYMap: Record<GapSize, string> = {
-  none: "gap-y-0", xs: "gap-y-1", sm: "gap-y-2", md: "gap-y-4",
-  lg: "gap-y-6", xl: "gap-y-8", "2xl": "gap-y-12", "3xl": "gap-y-16",
+const breakpointColsMap: Record<string, Record<number, string>> = {
+  base: colsMap,
+  sm: Object.fromEntries(Object.entries(colsMap).map(([k, v]) => [k, `sm:${v}`])),
+  md: Object.fromEntries(Object.entries(colsMap).map(([k, v]) => [k, `md:${v}`])),
+  lg: Object.fromEntries(Object.entries(colsMap).map(([k, v]) => [k, `lg:${v}`])),
+  xl: Object.fromEntries(Object.entries(colsMap).map(([k, v]) => [k, `xl:${v}`])),
+  "2xl": Object.fromEntries(Object.entries(colsMap).map(([k, v]) => [k, `2xl:${v}`])),
 };
 
 interface GridProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
-  cols?: number;
+  /** Column count — number for static, object for responsive breakpoints */
+  cols?: number | ResponsiveCols;
   rows?: number;
   gap?: GapSize;
   colGap?: GapSize;
   rowGap?: GapSize;
   flow?: "row" | "col" | "dense";
   placeItems?: "start" | "center" | "end" | "stretch";
+  /** Use auto-fit responsive grid instead of fixed cols */
   responsive?: boolean;
   minChildWidth?: string;
   as?: ElementType;
 }
 
+function resolveColsClasses(cols: number | ResponsiveCols): string {
+  if (typeof cols === "number") return colsMap[cols] || `grid-cols-${cols}`;
+  return Object.entries(cols)
+    .map(([bp, n]) => breakpointColsMap[bp]?.[n] || (bp === "base" ? `grid-cols-${n}` : `${bp}:grid-cols-${n}`))
+    .join(" ");
+}
+
 export const Grid = forwardRef<HTMLElement, GridProps>(
   ({ children, cols = 1, rows, gap = "md", colGap, rowGap, flow, placeItems, responsive, minChildWidth = "250px", as: Tag = "div", className, ...props }, ref) => {
-    // Use Tailwind arbitrary value class instead of inline style for CSP compliance
-    const responsiveColsClass = responsive
+    const colsClass = responsive
       ? `grid-cols-[repeat(auto-fit,minmax(${minChildWidth},1fr))]`
-      : colsMap[cols];
+      : resolveColsClasses(cols);
 
     return (
       <Tag
         ref={ref}
         className={cn(
           "grid",
-          responsiveColsClass,
+          colsClass,
           rows && `grid-rows-${rows}`,
           !colGap && !rowGap && gapMap[gap],
           colGap && gapXMap[colGap],

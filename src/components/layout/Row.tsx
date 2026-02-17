@@ -8,7 +8,10 @@ interface RowProps extends ComponentPropsWithoutRef<"div"> {
   align?: Align;
   justify?: Justify;
   center?: boolean;
+  /** Grow to fill available space in parent (flex-1) */
   fill?: boolean;
+  /** Force minimum full viewport height (min-h-screen) */
+  fullHeight?: boolean;
   padding?: Padding;
   wrap?: boolean;
   reverse?: boolean;
@@ -16,7 +19,7 @@ interface RowProps extends ComponentPropsWithoutRef<"div"> {
 }
 
 export const Row = forwardRef<HTMLElement, RowProps>(
-  ({ children, gap = "md", align = "center", justify = "start", center, fill, padding = "none", wrap, reverse, as: Tag = "div", className, ...props }, ref) => {
+  ({ children, gap = "md", align = "center", justify = "start", center, fill, fullHeight, padding = "none", wrap, reverse, as: Tag = "div", className, ...props }, ref) => {
     return (
       <Tag
         ref={ref}
@@ -25,7 +28,8 @@ export const Row = forwardRef<HTMLElement, RowProps>(
           reverse ? "flex-row-reverse" : "flex-row",
           gapMap[gap],
           center ? "items-center justify-center" : cn(alignMap[align], justifyMap[justify]),
-          fill && "min-h-screen",
+          fill && "flex-1",
+          fullHeight && "min-h-screen",
           padding !== "none" && paddingMap[padding],
           wrap && "flex-wrap",
           className

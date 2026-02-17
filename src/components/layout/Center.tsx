@@ -3,7 +3,10 @@ import { cn } from "./utils";
 
 interface CenterProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
+  /** Grow to fill available space in parent (flex-1) */
   fill?: boolean;
+  /** Force minimum full viewport height (min-h-screen) — use for full-page centering */
+  fullHeight?: boolean;
   horizontal?: boolean;
   vertical?: boolean;
   inline?: boolean;
@@ -11,7 +14,7 @@ interface CenterProps extends ComponentPropsWithoutRef<"div"> {
 }
 
 export const Center = forwardRef<HTMLElement, CenterProps>(
-  ({ children, fill, horizontal, vertical, inline, as: Tag = "div", className, ...props }, ref) => {
+  ({ children, fill, fullHeight, horizontal, vertical, inline, as: Tag = "div", className, ...props }, ref) => {
     const bothAxes = !horizontal && !vertical;
 
     return (
@@ -22,7 +25,8 @@ export const Center = forwardRef<HTMLElement, CenterProps>(
           "flex-col",
           (bothAxes || horizontal) && "items-center",
           (bothAxes || vertical) && "justify-center",
-          fill && "min-h-screen",
+          fill && "flex-1",
+          fullHeight && "min-h-screen",
           className
         )}
         {...props}
