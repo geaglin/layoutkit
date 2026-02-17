@@ -13,9 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LayoutKit — React Layout Primitives for Tailwind CSS",
+  title: "LayoutKit — The First Layout Language for the Web",
   description:
-    "10 React components that compile to the exact Tailwind CSS you'd write by hand. Zero runtime. Zero dependencies. You own the code.",
+    "10 semantic layout components that compile to Tailwind CSS. Zero runtime, full IntelliSense, framework-agnostic.",
+  openGraph: {
+    title: "LayoutKit — The First Layout Language for the Web",
+    description:
+      "10 semantic layout components that compile to Tailwind CSS. Zero runtime, full IntelliSense, framework-agnostic.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

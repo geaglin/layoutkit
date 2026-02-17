@@ -14,16 +14,17 @@ export function HomePage({ onNavigate, onSelectComponent }: HomePageProps) {
       {/* Hero */}
       <div className="mb-20 text-center">
         <div className="mb-6 inline-block rounded-full border border-accent/20 bg-gradient-to-r from-accent/15 to-purple/15 px-3 py-1 text-[11px] font-semibold text-accent">
-          REACT LAYOUT PRIMITIVES &rarr; TAILWIND CSS
+          THE FIRST LAYOUT LANGUAGE FOR THE WEB
         </div>
         <h1 className="mb-5 bg-gradient-to-br from-zinc-100 to-zinc-400 bg-clip-text text-[56px] font-extrabold leading-[1.05] tracking-tighter text-transparent">
-          Stop memorizing
+          10 semantic components
           <br />
-          Tailwind layout classes.
+          that compile to Tailwind CSS.
         </h1>
-        <p className="mx-auto mb-10 max-w-[520px] font-sans text-[17px] leading-relaxed text-muted">
-          10 React components that compile to the exact Tailwind CSS you&apos;d
-          write by hand. Zero runtime. Zero dependencies. You own the code.
+        <p className="mx-auto mb-10 max-w-[560px] font-sans text-[17px] leading-relaxed text-muted">
+          Zero runtime. Full IntelliSense. Framework-agnostic.
+          <br />
+          The only layout system that feels like a native language.
         </p>
         <div className="flex justify-center gap-3">
           <button
@@ -32,13 +33,66 @@ export function HomePage({ onNavigate, onSelectComponent }: HomePageProps) {
           >
             Try the Compiler &rarr;
           </button>
-          <button
-            onClick={() => onNavigate("docs")}
+          <a
+            href="https://github.com/geaglin/layoutkit"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-lg border border-zinc-700 px-6 py-2.5 text-[13px] font-bold text-foreground transition-colors hover:border-zinc-500"
           >
-            Read the Docs
-          </button>
+            View on GitHub
+          </a>
         </div>
+      </div>
+
+      {/* Get Started Section */}
+      <div className="mb-16 rounded-xl border border-accent/30 bg-accent/5 p-8">
+        <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-zinc-100">
+          Get started in 30 seconds
+        </h2>
+        <div className="mb-6 rounded-lg border border-zinc-700 bg-background p-4">
+          <code className="text-[13px] text-accent">npx layoutkit init</code>
+        </div>
+        <p className="mb-4 font-sans text-[14px] text-muted">
+          Then write layouts that actually make sense:
+        </p>
+        <div className="rounded-lg border border-zinc-700 bg-background p-4">
+          <pre className="text-[12px] leading-relaxed text-zinc-300">
+            <code>{`import { Stack, Center, Row } from "@/components/layout"
+
+<Stack gap="lg" padding="md">
+  <Center fill>
+    <h1>Hello World</h1>
+  </Center>
+</Stack>`}</code>
+          </pre>
+        </div>
+      </div>
+
+      {/* Features Grid */}
+      <h2 className="mb-5 text-2xl font-extrabold tracking-tight text-zinc-100">
+        Complete tooling ecosystem
+      </h2>
+      <div className="mb-16 grid grid-cols-2 gap-3">
+        {[
+          { name: "Compiler + Playground", desc: "Real-time compilation in your browser" },
+          { name: "Linter", desc: "6 semantic rules for layout quality" },
+          { name: "ESLint Plugin", desc: "Catch layout mistakes during development" },
+          { name: "HTML Compiler", desc: "Works with any framework or vanilla HTML" },
+          { name: "VS Code Extension", desc: "Full IntelliSense and autocomplete" },
+          { name: "Tailwind Safelist", desc: "Auto-generated class preservation" },
+        ].map((feature) => (
+          <div
+            key={feature.name}
+            className="rounded-lg border border-border bg-surface p-4"
+          >
+            <div className="mb-1 text-[13px] font-bold text-accent">
+              {feature.name}
+            </div>
+            <div className="font-sans text-[11px] text-zinc-600">
+              {feature.desc}
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Comparison grid */}
