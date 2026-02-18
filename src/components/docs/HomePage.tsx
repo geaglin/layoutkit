@@ -34,7 +34,7 @@ export function HomePage({ onNavigate, onSelectComponent }: HomePageProps) {
             Try the Compiler &rarr;
           </button>
           <a
-            href="https://github.com/geaglin/layoutkit"
+            href="https://github.com/Garrett-s-Apps/layoutkit"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg border border-zinc-700 px-6 py-2.5 text-[13px] font-bold text-foreground transition-colors hover:border-zinc-500"
@@ -44,20 +44,23 @@ export function HomePage({ onNavigate, onSelectComponent }: HomePageProps) {
         </div>
       </div>
 
-      {/* Get Started Section */}
-      <div className="mb-16 rounded-xl border border-accent/30 bg-accent/5 p-8">
+      {/* Install from npm */}
+      <div className="mb-8 rounded-xl border border-green-500/30 bg-green-500/5 p-8">
+        <div className="mb-2 inline-block rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-[11px] font-semibold text-green-400">
+          NOW ON NPM
+        </div>
         <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-zinc-100">
-          Get started in 30 seconds
+          Install as a package
         </h2>
-        <div className="mb-6 rounded-lg border border-zinc-700 bg-background p-4">
-          <code className="text-[13px] text-accent">npx layoutkit init</code>
+        <div className="mb-4 rounded-lg border border-zinc-700 bg-background p-4">
+          <code className="text-[13px] text-green-400">npm install layoutkit-css</code>
         </div>
         <p className="mb-4 font-sans text-[14px] text-muted">
-          Then write layouts that actually make sense:
+          Then import and use — auto-complete works out of the box:
         </p>
         <div className="rounded-lg border border-zinc-700 bg-background p-4">
           <pre className="text-[12px] leading-relaxed text-zinc-300">
-            <code>{`import { Stack, Center, Row } from "@/components/layout"
+            <code>{`import { Stack, Center, Row, Grid } from "layoutkit-css"
 
 <Stack gap="lg" padding="md">
   <Center fill>
@@ -66,6 +69,60 @@ export function HomePage({ onNavigate, onSelectComponent }: HomePageProps) {
 </Stack>`}</code>
           </pre>
         </div>
+        <p className="mt-4 font-sans text-[12px] text-zinc-500">
+          Requires React 18+ and Tailwind CSS. Works with Next.js, Vite, Remix, and any React framework.
+        </p>
+      </div>
+
+      {/* Platform install instructions */}
+      <div className="mb-8 rounded-xl border border-zinc-700 bg-surface p-8">
+        <h3 className="mb-4 text-lg font-extrabold tracking-tight text-zinc-100">
+          Platform Setup
+        </h3>
+        <div className="space-y-4">
+          <div>
+            <div className="mb-2 text-[13px] font-bold text-accent">macOS</div>
+            <div className="rounded-lg border border-zinc-700 bg-background p-3">
+              <pre className="text-[12px] leading-relaxed text-zinc-300"><code>{`# Install Node.js (if needed)
+brew install node
+
+# In your React + Tailwind project:
+npm install layoutkit-css`}</code></pre>
+            </div>
+          </div>
+          <div>
+            <div className="mb-2 text-[13px] font-bold text-accent">Windows</div>
+            <div className="rounded-lg border border-zinc-700 bg-background p-3">
+              <pre className="text-[12px] leading-relaxed text-zinc-300"><code>{`# Install Node.js from https://nodejs.org
+# Then in PowerShell or CMD:
+npm install layoutkit-css`}</code></pre>
+            </div>
+          </div>
+          <div>
+            <div className="mb-2 text-[13px] font-bold text-accent">Linux</div>
+            <div className="rounded-lg border border-zinc-700 bg-background p-3">
+              <pre className="text-[12px] leading-relaxed text-zinc-300"><code>{`# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# In your project:
+npm install layoutkit-css`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CLI scaffolding alternative */}
+      <div className="mb-16 rounded-xl border border-accent/30 bg-accent/5 p-8">
+        <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-zinc-100">
+          Or scaffold components directly
+        </h2>
+        <div className="mb-4 rounded-lg border border-zinc-700 bg-background p-4">
+          <code className="text-[13px] text-accent">npx layoutkit init</code>
+        </div>
+        <p className="font-sans text-[14px] text-muted">
+          This copies all 10 components into your project (shadcn-style). You own the source code and can customize freely.
+        </p>
       </div>
 
       {/* Features Grid */}
