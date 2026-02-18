@@ -1,17 +1,17 @@
-# layoutkit
+# layoutkit-css
 
 The first layout language for the web. 10 semantic components that compile to Tailwind CSS.
 
 ## Install
 
 ```bash
-npm install layoutkit
+npm install layoutkit-css
 ```
 
 ## Usage
 
 ```tsx
-import { Stack, Row, Center, Grid } from "layoutkit";
+import { Stack, Row, Center, Grid } from "layoutkit-css";
 
 function App() {
   return (

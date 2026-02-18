@@ -1,5 +1,5 @@
 {
-  "name": "layoutkit",
+  "name": "layoutkit-css",
   "version": "0.1.0",
   "description": "The first layout language for the web. 10 semantic components that compile to Tailwind CSS.",
   "license": "MIT",
