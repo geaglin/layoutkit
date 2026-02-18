@@ -7,6 +7,7 @@ import { DocsPage } from "@/components/docs/DocsPage";
 import { PlaygroundPage } from "@/components/docs/PlaygroundPage";
 import { TutorialPage } from "@/components/docs/TutorialPage";
 import { LintingPage } from "@/components/docs/LintingPage";
+import { InstallPage } from "@/components/docs/InstallPage";
 
 export default function Home() {
   const [section, setSection] = useState<Section>("home");
@@ -25,6 +26,7 @@ export default function Home() {
             onSelectComponent={setSelectedComponent}
           />
         )}
+        {section === "install" && <InstallPage />}
         {section === "docs" && (
           <DocsPage
             selectedComponent={selectedComponent}

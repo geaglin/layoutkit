@@ -1,9 +1,10 @@
 "use client";
 
-export type Section = "home" | "docs" | "playground" | "tutorial" | "linting";
+export type Section = "home" | "install" | "docs" | "playground" | "tutorial" | "linting";
 
 const SECTION_LABELS: Record<Section, string> = {
   home: "Home",
+  install: "Install",
   docs: "Docs",
   playground: "Compiler",
   tutorial: "Tutorial",
