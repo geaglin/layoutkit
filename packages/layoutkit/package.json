@@ -1,0 +1,55 @@
+{
+  "name": "layoutkit",
+  "version": "0.1.0",
+  "description": "The first layout language for the web. 10 semantic components that compile to Tailwind CSS.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garrett-s-apps/layoutkit.git",
+    "directory": "packages/layoutkit"
+  },
+  "keywords": ["layout", "tailwind", "css", "react", "components", "flexbox", "grid", "design-system"],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19.2.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5"
+  }
+}
